@@ -103,13 +103,14 @@ void PhoneBook::searchContact() const
     }
 
     std::string input;
-    int index;
     std::cout << "Enter the index of the contact to display: ";
     std::getline(std::cin, input);
 
-    std::stringstream ss(input);
-    if (ss >> index && ss.eof() && index >= 0 && index < _contactCount)
+    if (input.length() == 1 && input[0] >= '0' && input[0] < (_contactCount + '0'))
+    {
+        int index = input[0] - '0'; 
         _contacts[index].displayContact();
+    }
     else
         std::cout << "Invalid index please enter a valid number from the list." << std::endl;
 }
